@@ -21,17 +21,23 @@ export const TodoSlice = createSlice({
         addTodo: ( state, action: PayloadAction<Todo>) => {
             state.allTodos.push(action.payload)
         },
-        deleteTodo: ( state, action: PayloadAction<number>) => {                     
-            state.allTodos.splice(action.payload, 1)
+        deleteTodo: ( state, action) => { 
+            const index = state.allTodos.findIndex(item => item.id === action.payload)                   
+            state.allTodos.splice(index, 1)
         },
         markCompleted: ( state, action) => {
             state.allTodos.map(todo => {
                 if(todo.id === action.payload) todo.completed = !todo.completed
             })
         },
-        updateTodo: (state, action: PayloadAction<Todo>) => {
-            state.allTodos.map(todo => todo.id === action.payload.id ? action.payload : todo)
+        updateTodo: (state, action) => {
+            const index = state.allTodos.findIndex(item => item.id === action.payload.id)                   
+            state.allTodos.splice(index, 1, action.payload)
+        },
+        completedTodo: (state, action) => {
+            state.allTodos.map(todo => todo.completed)
         }
+
     }
 })
 

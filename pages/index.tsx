@@ -1,12 +1,13 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
-import Todos from '../components/Todos'
 import styles from '../styles/Home.module.css'
-import TodoForm from '../components/TodoForm'
 import {useDispatch, useSelector} from 'react-redux'
 import {useEffect} from 'react'
 import {RootState} from '../redux/index'
+import Header from '../components/Header'
+import TodoList from '../components/TodoList'
+import Footer from '../components/Footer'
 
 
 const Home= () => {  
@@ -21,11 +22,10 @@ const Home= () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.home}>
-        <h1 style={{color: '#ff8898'}}>ToDos</h1>
-        <TodoForm />
-        <Todos 
-            todos={todos}
-             />
+        <Header />
+        <TodoList todos={todos} />
+        <Footer />
+       
       </main>    
     </div>
   )
